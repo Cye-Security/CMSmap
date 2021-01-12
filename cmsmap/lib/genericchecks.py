@@ -21,7 +21,7 @@ class GenericChecks:
         self.thread_num = 5
         self.commExt = ['.txt', '.php', '/', '.html']
         self.notValidLen = []
-        self.commFiles = [line.strip() for line in open(initializer.commFiles)]
+        self.commFiles = [line.strip() for line in open(initializer.commFiles, encoding="utf8")]
 
     # Validate the URL provided
     def CheckURL(self):

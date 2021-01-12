@@ -79,7 +79,7 @@ class CoreUpdate:
                 initializer.moo_defaultFiles, initializer.moo_defaultFolders
                 ]:
             readlist = sorted(set([line.strip() for line in open(list)]))
-            f = open(list, "w")
+            f = open(list, "w", encoding="utf8")
             for plugin in readlist:
                 f.write("%s\n" % plugin)
             f.close()
@@ -169,7 +169,7 @@ class CoreUpdate:
                             stdout=subprocess.PIPE,
                             shell=True)
                         p.communicate()
-                with open(os.path.join(initializer.cmsmapPath, "cmsmap.conf"),'wr') as self.configFile:
+                with open(os.path.join(initializer.cmsmapPath, "cmsmap.conf"),'wr', encoding="utf8") as self.configFile:
                     initializer.config.set("exploitdb", "edbpath",os.path.normpath(self.edbpath))
                     initializer.config.set("exploitdb", "edbtype", "git")
                     initializer.config.write(self.configFile)
@@ -195,7 +195,7 @@ class CoreUpdate:
             report.message(msg)
             p = subprocess.Popen("git -C "+self.cmsmapPath+"/tmp/"+cms_type+" "+sorted_versions,stdout=subprocess.PIPE,shell=True, universal_newlines=True)
             output, error = p.communicate()
-            f = open(cms_file, "w")
+            f = open(cms_file, "w", encoding="utf8")
             f.write(output)
             f.close()
 
@@ -244,7 +244,7 @@ class CoreUpdate:
             report.message(msg)
             p = subprocess.Popen(grep_cmd,stdout=subprocess.PIPE,shell=True, universal_newlines=True)
             output, error = p.communicate()
-            f = open(cms_small_plugin_path, "a")
+            f = open(cms_small_plugin_path, "a", encoding="utf8")
             f.write(output)
             f.close()
 
@@ -287,7 +287,7 @@ class CoreUpdate:
                                  "/tmp/"+cms_type+" -type f -name '*.txt' -o -name '*.html' -o -name '*.sql'| sed 's|"+self.cmsmapPath+
                                  "/tmp/"+cms_type+"||g'",stdout=subprocess.PIPE,shell=True, universal_newlines=True)
             output, error = p.communicate()
-            f = open(defaultFiles, "a")
+            f = open(defaultFiles, "a", encoding="utf8")
             f.write(output)
             f.close()
 
@@ -297,7 +297,7 @@ class CoreUpdate:
                                  "/tmp/"+cms_type+" -maxdepth 2 -type d | sed 's|"+self.cmsmapPath+
                                  "/tmp/"+cms_type+"||g'",stdout=subprocess.PIPE,shell=True, universal_newlines=True)
             output, error = p.communicate()
-            f = open(defaultFolders, "a")
+            f = open(defaultFolders, "a", encoding="utf8")
             f.write(output)
             f.close()
 

@@ -24,9 +24,7 @@ class MooScan:
         self.pluginsFound = []
         self.notValidLen = []
         self.notExistingCode = 404
-        self.confFiles = [line.strip() for line in open(initializer.confFiles)]
-        # No plugins for moodle
-        #self.plugins = [line.strip() for line in open(initializer.moo_plugins)]
+        self.confFiles = [line.strip() for line in open(initializer.confFiles, encoding="utf8")]
 
     # Moodle checks
     def Moorun(self):
@@ -42,9 +40,9 @@ class MooScan:
     
     # Grab the versions and default files generated at run time
     def MooGetLocalFiles(self):
-        self.versions = [line.strip() for line in open(initializer.moo_versions)]
-        self.defaultFiles = [line.strip() for line in open(initializer.moo_defaultFiles)]
-        self.defaultFolders = [line.strip() for line in open(initializer.moo_defaultFolders)]
+        self.versions = [line.strip() for line in open(initializer.moo_versions, encoding="utf8")]
+        self.defaultFiles = [line.strip() for line in open(initializer.moo_defaultFiles, encoding="utf8")]
+        self.defaultFolders = [line.strip() for line in open(initializer.moo_defaultFolders, encoding="utf8")]
 
     # Find old or temp Moodle config files left on the web root
     def MooConfigFiles(self):
@@ -97,7 +95,7 @@ class MooScan:
                 defFileHashes[defFile]=hash_digest
             msg = "Checking Moodle version ..."
             report.verbose(msg)
-            FNULL = open(os.devnull, 'w')
+            FNULL = open(os.devnull, 'w', encoding="utf8")
             p = subprocess.Popen("git -C "+ initializer.cmsmapPath+"/tmp/moodle checkout master -f", stdout=FNULL, stderr=FNULL, shell=True)
             p.communicate()
             # Compare discovered default files with default files against each version of Moodle
@@ -110,7 +108,7 @@ class MooScan:
                 for defFile, defFileHash in defFileHashes.items() :
                     filepath = initializer.cmsmapPath+"/tmp/moodle"+defFile
                     if os.path.isfile(filepath):
-                        f = open(filepath, "rb")
+                        f = open(filepath, "rb", encoding="utf8")
                         hash_object = hashlib.sha256(f.read())
                         hash_digest = hash_object.hexdigest()
                     if hash_digest == defFileHash :

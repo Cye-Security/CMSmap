@@ -22,10 +22,10 @@ class JooScan:
         self.pluginsFound = []
         self.notValidLen = []
         self.notExistingCode = 404
-        self.confFiles = [line.strip() for line in open(initializer.confFiles)]
+        self.confFiles = [line.strip() for line in open(initializer.confFiles, encoding="utf8")]
         self.excludeEDBPlugins = []
         self.excludeEDBPlugins = ['system', 'com_banners', 'com_contact', 'com_content', 'com_users']
-        self.plugins = [line.strip() for line in open(initializer.joo_plugins)]
+        self.plugins = [line.strip() for line in open(initializer.joo_plugins, encoding="utf8")]
 
     # Joomla checks
     def Joorun(self):
@@ -55,10 +55,10 @@ class JooScan:
 
     # Grab the small plugins, versions and default files generated at run time
     def JooGetLocalFiles(self):
-        self.plugins_small = [line.strip() for line in open(initializer.joo_plugins_small)]
-        self.versions = [line.strip() for line in open(initializer.joo_versions)]
-        self.defaultFiles = [line.strip() for line in open(initializer.joo_defaultFiles)]
-        self.defaultFolders = [line.strip() for line in open(initializer.joo_defaultFolders)]
+        self.plugins_small = [line.strip() for line in open(initializer.joo_plugins_small, encoding="utf8")]
+        self.versions = [line.strip() for line in open(initializer.joo_versions, encoding="utf8")]
+        self.defaultFiles = [line.strip() for line in open(initializer.joo_defaultFiles, encoding="utf8")]
+        self.defaultFolders = [line.strip() for line in open(initializer.joo_defaultFolders, encoding="utf8")]
 
     # Find Joomla version and check it on exploit-db
     def JooVersion(self):

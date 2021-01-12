@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 version = {}
-with open('cmsmap/version.py') as f:
+with open('cmsmap/version.py', encoding="utf8") as f:
     exec(f.read(), version)
 
 setup(

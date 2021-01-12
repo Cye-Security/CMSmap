@@ -30,11 +30,11 @@ class WPScan:
         self.XMLRPCEnable = True
         self.theme = None
         self.notExistingCode = 404
-        self.confFiles = [line.strip() for line in open(initializer.confFiles)]
-        self.plugins = [line.strip() for line in open(initializer.wp_plugins)]
-        self.themes = [line.strip() for line in open(initializer.wp_themes)]
-        self.themes_small = [line.strip() for line in open(initializer.wp_themes_small)]
-        self.timthumbs = [line.strip() for line in open(initializer.wp_timthumbs)]
+        self.confFiles = [line.strip() for line in open(initializer.confFiles, encoding="utf8")]
+        self.plugins = [line.strip() for line in open(initializer.wp_plugins, encoding="utf8")]
+        self.themes = [line.strip() for line in open(initializer.wp_themes, encoding="utf8")]
+        self.themes_small = [line.strip() for line in open(initializer.wp_themes_small, encoding="utf8")]
+        self.timthumbs = [line.strip() for line in open(initializer.wp_timthumbs, encoding="utf8")]
 
     # WordPress checks
     def WPrun(self):
@@ -75,7 +75,7 @@ class WPScan:
         self.plugins_small = [line.strip() for line in open(initializer.wp_plugins_small)]
         self.versions = [line.strip() for line in open(initializer.wp_versions)]
         self.defaultFiles = [line.strip() for line in open(initializer.wp_defaultFiles)]
-        self.defaultFolders = [line.strip() for line in open(initializer.wp_defaultFolders)]
+        self.defaultFolders = [line.strip() for line in open(initializer.wp_defaultFolders, encoding="utf8")]
 
     # Find WordPress version and check it on exploit-db
     def WPVersion(self):
