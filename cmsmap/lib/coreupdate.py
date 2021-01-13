@@ -115,6 +115,7 @@ class CoreUpdate:
                 report.message(msg)
                 sys.exit(1)
         elif self.edbtype.lower() == "apt":
+            print(self.edbpath)
             if os.path.exists(self.edbpath):
                 p = subprocess.Popen(
                     "apt-get install exploitdb -s",
